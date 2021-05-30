@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> Meni </title>
+        <link rel="icon" type = "image/jpg" href= "Meni(icon).jpg">
+        <link rel="stylesheet" href="estilo.css">
+        <script> 
+        var nombre = prompt("¿Cuál es tu nombre?");
+        alert( "Bienvenida " + nombre);
+        var mood = prompt( "¿Como te encuentras el día de hoy? ¿Qué has estado haciendo?");
+        
+        //empieza analisis
+        var resultado = ""
+
+const accionesRespuesta = [
+    "Bailemos un poco",
+    "Puedes marcar el número de algún amigo o familiar aquí",
+    "Intenta ayudar a alguien hoy, aquí algunas opciones : - pregunta a algún amig@ o familiar si necesitan algo. - Haz voluntariado. -Regala algo a alquien necesitados", 
+    "Saltando un poco", 
+    "Resuelve este rompecabezas"
+]
+
+//alert ("Ya que tienes una actitud positiva: " + accionesRespuesta[2]);
+alert ( "Mejoremos un tu estado de ánimo: " + accionesRespuesta[3]);
+
+var body = {
+    "documents":[
+    { 
+    "id" : "1",
+    "language" : "es",
+    "text" : mood
+    }
+    ]
+}
+var direccion = 'https://servicioanalisistexto.cognitiveservices.azure.com/text/analytics/v3.0/entities/recognition/general';
+
+axios.post( direccion,body, { 
+    headers: {
+        "Ocp-Apim-Subscription-Key" : "8b4c7829af844bc699425c01e131246a",
+        "Content-Type" : "application/json"
+    }
+ })
+ .then( respuesta => {
+     resultado = respuesta.data.documents[0].id
+    console.log( resultado );
+    })
+ .catch( error =>{ console.log(error.response.data ) } );
+
+ //console.log( "Segunda impresión" + resultado );
+
+ function deteccion (  ) {
+
+    for (  deteccion ;  ; ) {
+    if ( resultado.text = "feliz", "emocionada", "contenta", "bien" ){
+    console.log( accionesRespuesta[2] ) 
+    }
+    
+    else if( resultado.text = "cansada", "molesta","estresada", "mal" ){
+        console.log( accionesRespuesta[1] )
+    }
+     
+ } };
+ deteccion(  )
+
+.then 
+function die(reason) {
+    throw new Error(reason);
+}
+
+//termina analisis 
+
+        </script>
+    </head>
+<body> 
+    <div align= "center">
+        <h1>  </h1>
+        <h1>  </h1>
+        <img src ="sc.inicio.png">
+    </div>
+</body>
+</html>
